@@ -55,7 +55,7 @@ def read_readme():
         return __doc__
 
 
-setup(name='tagexpressions',
+setup(name='tag-expressions',
       version=read_version(),
       description=__doc__,
       long_description=read_readme(),
