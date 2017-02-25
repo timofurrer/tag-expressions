@@ -1,10 +1,10 @@
 tag-expressions
 ===============
 
-Package to evaluate logical tag expressions by using a modified version of the `Shunting Yard algorithm <https://en.wikipedia.org/wiki/Shunting-yard_algorithm>`_
+Package to evaluate logical tag expressions by using a modified version of the `Shunting Yard algorithm <https://en.wikipedia.org/wiki/Shunting-yard_algorithm>`_.
 This package is a Python port of cucumbers tag expression.
 
-It's also used in `radish-bdd <https://github.com/radish-bdd/radish>`_.
+It's also used by `radish <https://github.com/radish-bdd/radish>`_.
 
 |Build Status| |PyPI package version| |PyPI python versions|
 
