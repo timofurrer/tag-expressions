@@ -64,7 +64,6 @@ setup(name='tag-expressions',
       author_email='tuxtimo@gmail.com',
       include_package_data=True,
       packages=find_packages(exclude=['*tests*']),
-      install_requires=[],
       classifiers=[
           'Development Status :: 5 - Production/Stable',
           'Environment :: Console',
