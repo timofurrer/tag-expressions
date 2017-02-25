@@ -15,7 +15,6 @@ matrix:
 
 # command to install dependencies
 install:
-  - python setup.py build sdist
   - pip install -r development.txt
 
 # command to run tests
