@@ -18,7 +18,7 @@ class VersionFinder(ast.NodeVisitor):
 
     def visit_Assign(self, node):
         try:
-            if node.targets[0].id == 'version':
+            if node.targets[0].id == '__VERSION__':
                 self.version = node.value.s
         except:
             pass
