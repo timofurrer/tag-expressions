@@ -24,8 +24,24 @@ class TagExpressionError(Exception):
 
 
 def parse(infix):
-    """
-    Parse the given string logical tag expression.
+    """Parse the given infix string to an expression which can be evaluated.
+
+    Known operators are:
+        * or
+        * and
+        * not
+
+    With the following precedences (from high to low):
+        * not
+        * and
+        * or
+        * )
+        * (
+
+
+    :param str infix: the input string expression
+
+    :returns: an expression which can be evaluated with some input values
     """
     tokens = infix.replace('(', ' ( ').replace(')', ' ) ').strip().split()
 
@@ -66,6 +82,20 @@ def parse(infix):
         raise TagExpressionError('Not empty')
 
     return expression
+
+
+def evaluate(infix, values):
+    """Parse the given infix string and evaluate with the given values.
+
+    :param str infix: the input string expression
+    :param list values: a list of values with variables to match
+                        against the infix expression.
+
+    :returns: if the given values match the infix expression
+    :rtype: bool
+    """
+    expression = parse(infix)
+    return expression.evaluate(values)
 
 
 def create_and_push_expression(token, expressions):

@@ -6,7 +6,7 @@ Package to parse logical tag expressions
 
 import pytest
 
-from tagexpressions import parse
+from tagexpressions import parse, evaluate
 
 
 @pytest.mark.parametrize('infix, expected', [
@@ -52,3 +52,15 @@ def test_basic_evaluation(infix, values, expected):
 def test_complex_evaluation(infix, values, expected):
     """Test complex tag expression evaluation"""
     assert parse(infix).evaluate(values) == expected
+
+
+@pytest.mark.parametrize('infix, values, expected', [
+    ('a and b', ['a', 'b'], True),
+    ('a and b', ['a'], False),
+    ('a or b', ['a', 'b'], True),
+    ('a or b', ['a'], True),
+    ('not a', ['b'], True),
+])
+def test_direct_evaluation(infix, values, expected):
+    """Test direct evaluation of an infix against some values"""
+    assert evaluate(infix, values) == expected

@@ -4,9 +4,9 @@
 Package to parse logical tag expressions
 """
 
-from .parser import parse
+from .parser import parse, evaluate
 
 __VERSION__ = '1.0.0'
 
 # only expose the parse function
-__all__ = ['parse']
+__all__ = ['parse', 'evaluate']
