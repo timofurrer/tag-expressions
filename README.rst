@@ -48,6 +48,28 @@ Here is a tease
     >>> assert compiled_expression.evaluate(data) == False
 
 
+Usage
+-----
+
+Available operators
+~~~~~~~~~~~~~~~~~~~
+
+* **or** - "or" conjunction of two given variables
+* **and** - "and" conjunction of two given variables
+* **not** - negation of a single variable
+
+Every other token given in an *infix* is considered a variable.
+
+Operator precedence
+~~~~~~~~~~~~~~~~~~~
+
+From high to low:
+
+* ()
+* or
+* and
+* not
+
 .. |Build Status| image:: https://travis-ci.org/timofurrer/tag-expressions.png?branch=master
    :target: https://travis-ci.org/timofurrer/tag-expressions
 .. |PyPI package version| image:: https://badge.fury.io/py/tag-expressions.svg
