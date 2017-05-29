@@ -1,0 +1,18 @@
+Source: tag-expressions
+Maintainer: Timo Furrer <tuxtimo@gmail.com>
+Section: python
+Priority: optional
+Build-Depends: debhelper (>= 9), dh-python,
+ python-all (>= 2.7.3), python-setuptools,
+ python3-all, python3-setuptools
+Standards-Version: 3.9.1
+
+Package: python-tag-expressions
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}
+Description: Python implementation of Shunting-yard Algorithm to evaluate logical tag expressions
+
+Package: python3-tag-expressions
+Architecture: all
+Depends: ${misc:Depends}, ${python3:Depends}
+Description: Python implementation of Shunting-yard Algorithm to evaluate logical tag expressions
