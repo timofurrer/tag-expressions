@@ -45,7 +45,7 @@ def parse(infix):
     :returns: an expression which can be evaluated with some input values
     """
     # this regex should match most variations of sometag(somevar,someOtherVar). i refer to them as a complex literal because
-    # they will change the evaluation
+    # they will not change the evaluation. a should act the same as a(x)
     literal_re = compile_regex(r'(?:\w|\d)+\((?:\w|\d|,)+\)')
     # To support tags with variables, replace all tags containing variables with a unique identifier
     complex_literals = {str(uuid4()): complex_literal for complex_literal in literal_re.findall(infix)}
