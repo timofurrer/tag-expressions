@@ -5,7 +5,8 @@ Package to parse logical tag expressions
 """
 
 from collections import deque
-
+from uuid import uuid4
+from re import compile as compile_regex
 from .models import Literal, Or, And, Not
 
 #: Holds the possible token associativities
@@ -43,6 +44,15 @@ def parse(infix):
 
     :returns: an expression which can be evaluated with some input values
     """
+    # this regex should match most variations of sometag(somevar,someOtherVar). i refer to them as a complex literal because
+    # they will change the evaluation
+    literal_re = compile_regex(r'(?:\w|\d)+\((?:\w|\d|,)+\)')
+    # To support tags with variables, replace all tags containing variables with a unique identifier
+    complex_literals = {str(uuid4()): complex_literal for complex_literal in literal_re.findall(infix)}
+    # now for each complex literal, replace it with the unique_id into the infix
+    for unique_id, complex_literal in complex_literals.items():
+        infix = infix.replace(complex_literal, unique_id)
+    
     tokens = infix.replace('(', ' ( ').replace(')', ' ) ').strip().split()
 
     #: Holds the parsed operations
@@ -70,7 +80,8 @@ def parse(infix):
             if ops[-1] == '(':
                 ops.pop()
         else:
-            create_and_push_expression(token, expressions)
+            # if we replaced the token earlier, then revert that replacement now. 
+            create_and_push_expression(token if token not in complex_literals else complex_literals[token], expressions)
 
     while len(ops) > 0:
         if ops[-1] == '(':
