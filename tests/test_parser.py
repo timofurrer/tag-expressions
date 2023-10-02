@@ -32,7 +32,19 @@ def test_parser(infix, expected):
     ('a or b', ['c'], False),
     ('not a', ['b'], True),
     ('not a', ['a'], False),
-    ('not a', [], True)
+    ('not a', [], True),
+    ('not a(x)', [], True),
+    ('not a(x)', ['a(x)'], False),
+    ('a(x) or b', ['a(x)'], True),
+    ('a(x) or b', ['b'], True),
+    ('a(x) or b', [''], False),
+    ('a(x,y) or b', [''], False),
+    ('sometag(someValue,y) or b', [''], False),
+    ('sometag(someValue,y) or b(x)', ['b(x)'], True),
+    ('a or (sometag(someValue,y) and not b(x))', ['b(x)', 'sometag(someValue, y)'], False),
+    ('c(y) and (author(inquisitev) or (sometag(someValue,y) and not b(x)))', ['c(y)', 'sometag(someValue,y)'], True),
+    ('c(y) and (author(inquisitev) or (sometag(someValue,y) and not b(x)))', ['c(y)', 'author(inquisitev)'], True),
+    ('c(y) and not (author(inquisitev) or (sometag(someValue,y) and not b(x)))', ['c(y)', "b(x)"], True)
 ])
 def test_basic_evaluation(infix, values, expected):
     """Test basic tag expression evaluation"""
@@ -60,6 +72,8 @@ def test_complex_evaluation(infix, values, expected):
     ('a or b', ['a', 'b'], True),
     ('a or b', ['a'], True),
     ('not a', ['b'], True),
+    ('sometag(someValue,y) or b', ['b'], True),
+    ('sometag(someValue,y) or b', ['sometag(someValue,y)'], True)
 ])
 def test_direct_evaluation(infix, values, expected):
     """Test direct evaluation of an infix against some values"""
