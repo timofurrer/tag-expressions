@@ -39,7 +39,11 @@ def test_parser(infix, expected):
     ('a(x) or b', ['b'], True),
     ('a(x) or b', [''], False),
     ('a(x,y) or b', [''], False),
-    ('sometag(someValue,y) or b', [''], False)
+    ('sometag(someValue,y) or b', [''], False),
+    ('sometag(someValue,y) or b(x)', ['b(x)'], True),
+    ('a or (sometag(someValue,y) and not b(x))', ['b(x)', 'sometag(someValue, y)'], False),
+    ('c(y) and (author(inquisitev) or (sometag(someValue,y) and not b(x)))', ['c(y)', 'sometag(someValue,y)'], True),
+    ('c(y) and not (author(inquisitev) or (sometag(someValue,y) and not b(x)))', ['c(y)', "b(x)"], True)
 ])
 def test_basic_evaluation(infix, values, expected):
     """Test basic tag expression evaluation"""
