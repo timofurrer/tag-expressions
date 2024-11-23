@@ -70,8 +70,8 @@ From high to low:
 * and
 * not
 
-.. |Build Status| image:: https://travis-ci.org/timofurrer/tag-expressions.png?branch=master
-   :target: https://travis-ci.org/timofurrer/tag-expressions
+.. |Build Status| image:: https://github.com/timofurrer/tag-expressions/actions/workflows/build.yml/badge.svg
+   :target: https://github.com/timofurrer/tag-expressions/actions/workflows/build.yml
 .. |PyPI package version| image:: https://badge.fury.io/py/tag-expressions.svg
    :target: https://badge.fury.io/py/tag-expressions
 .. |PyPI python versions| image:: https://img.shields.io/pypi/pyversions/tag-expressions.svg
